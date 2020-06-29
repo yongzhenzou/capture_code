@@ -14,7 +14,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        startActivityForResult(Intent(this, CameraActivity::class.java),1)
+        capture.setOnClickListener {
+            startActivityForResult(Intent(this, CameraActivity::class.java),1)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

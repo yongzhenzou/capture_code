@@ -1,4 +1,4 @@
-package zyz.hero.camera_code.utils.statusbar;
+package zyz.hero.capture_library.utils.statusbar;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -12,7 +12,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-import zyz.hero.camera_code.R;
+import zyz.hero.capture_library.R;
 
 
 @TargetApi(Build.VERSION_CODES.KITKAT)

@@ -1,2 +1,3 @@
 rootProject.name='camera_code'
 include ':app'
+include ':capture_library'

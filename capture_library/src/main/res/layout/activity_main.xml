@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#333"
     tools:context=".CameraActivity">
-    <zyz.hero.camera_code.utils.statusbar.StatusBarView
+    <zyz.hero.capture_library.utils.statusbar.StatusBarView
         android:id="@+id/statusView"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
@@ -78,7 +78,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bg_bottom"
         app:layout_constraintTop_toBottomOf="@+id/titleView" />
 
-    <zyz.hero.camera_code.widget.LayoutTitleView
+    <zyz.hero.capture_library.widget.LayoutTitleView
         android:id="@+id/titleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

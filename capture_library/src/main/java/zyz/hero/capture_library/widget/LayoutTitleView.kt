@@ -1,4 +1,4 @@
-package zyz.hero.camera_code.widget
+package zyz.hero.capture_library.widget
 
 import android.content.Context
 import android.graphics.Color
@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.layout_title.view.*
-import zyz.hero.camera_code.R
+import zyz.hero.capture_library.R
 
 
 /**

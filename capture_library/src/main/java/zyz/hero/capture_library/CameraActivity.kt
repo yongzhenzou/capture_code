@@ -1,4 +1,4 @@
-package zyz.hero.camera_code
+package zyz.hero.capture_library
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,7 +23,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_main.*
-import zyz.hero.camera_code.utils.statusbar.StatusBarUtils
+import zyz.hero.capture_library.utils.statusbar.StatusBarUtils
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.concurrent.ExecutorService

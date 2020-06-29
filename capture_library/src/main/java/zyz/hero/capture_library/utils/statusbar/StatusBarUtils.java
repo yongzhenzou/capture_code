@@ -1,4 +1,4 @@
-package zyz.hero.camera_code.utils.statusbar;
+package zyz.hero.capture_library.utils.statusbar;
 
 import android.app.Activity;
 import android.os.Build;

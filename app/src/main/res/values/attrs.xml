@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="LayoutTitleView">
+        <attr name="leftImage" format="reference" />
+        <attr name="bgColor" format="color" />
+        <attr name="centerTitle" format="string|reference" />
+        <attr name="rightTitle" format="string|reference" />
+        <attr name="centerTitleSize" format="dimension" />
+        <attr name="centerTitleColor" format="color" />
+        <attr name="rightTitleSize" format="dimension" />
+        <attr name="rightTitleColor" format="color" />
+        <attr name="leftImageVisibility">
+            <enum name="visible" value="1" />
+            <enum name="invisible" value="2" />
+            <enum name="gone" value="3" />
+        </attr>
+        <attr name="rightTitleVisibility">
+            <enum name="visible" value="1" />
+            <enum name="invisible" value="2" />
+            <enum name="gone" value="3" />
+        </attr>
+        <attr name="rightTitleDrawableLeft" format="reference" />
+        <attr name="rightTitleDrawableRight" format="reference" />
+        <attr name="rightTitleDrawableTop" format="reference" />
+        <attr name="rightTitleDrawableBottom" format="reference" />
+        <attr name="rightTitleDrawablePadding" format="dimension" />
+    </declare-styleable>
+</resources>

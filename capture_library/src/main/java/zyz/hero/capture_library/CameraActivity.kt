@@ -22,13 +22,13 @@ import androidx.camera.extensions.HdrPreviewExtender
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_camera.*
 import zyz.hero.capture_library.utils.statusbar.StatusBarUtils
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.concurrent.ExecutorService
 
-class CameraActivity : AppCompatActivity() {
+open class CameraActivity : AppCompatActivity() {
     private var preview: Preview? = null
     private var imageCapture: ImageCapture? = null
     private var camera: Camera? = null
@@ -39,7 +39,7 @@ class CameraActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         StatusBarUtils.setStatusBarImmersiveColor(this, Color.TRANSPARENT, false)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_camera)
         titleView.setOnLeftButtonClickListener {
             finish()
         }
@@ -97,13 +97,11 @@ class CameraActivity : AppCompatActivity() {
             //支持hdr的话 开启hdr 选取质量好的照片
             var previewHdr = HdrPreviewExtender.create(previewBuilder)
             if (previewHdr.isExtensionAvailable(cameraSelector!!)) {
-                Log.e("相机测试", "预览支持Hdr")
                 previewHdr.enableExtension(cameraSelector!!)
             }
             //支持美颜的话,开启美颜,感觉自己萌萌哒
             var previewBeauty = BeautyPreviewExtender.create(previewBuilder)
             if (previewBeauty.isExtensionAvailable(cameraSelector!!)){
-                Log.e("相机测试", "预览支持美颜")
                 previewBeauty.enableExtension(cameraSelector!!)
             }
 
@@ -112,12 +110,10 @@ class CameraActivity : AppCompatActivity() {
             var captureBuilder = ImageCapture.Builder()
             var captureHdr = HdrImageCaptureExtender.create(captureBuilder)
             if (captureHdr.isExtensionAvailable(cameraSelector!!)) {
-                Log.e("相机测试", "拍摄支持Hdr")
                 captureHdr.enableExtension(cameraSelector!!)
             }
             var captureBeauty = BeautyImageCaptureExtender.create(captureBuilder)
             if (captureBeauty.isExtensionAvailable(cameraSelector!!)){
-                Log.e("相机测试", "拍照支持美颜")
                 captureBeauty.enableExtension(cameraSelector!!)
             }
             imageCapture = captureBuilder
@@ -164,11 +160,6 @@ class CameraActivity : AppCompatActivity() {
                         setResult(Activity.RESULT_OK, Intent().apply { putExtra("data", savedUri) })
                         finish()
                     }
-
-
-//                val msg = "Photo capture succeeded: $savedUri"
-//                Toast.makeText(baseContext, msg, Toast.LENGTH_SHORT).show()
-//                startActivity(Intent(this@CameraActivity, ImgPreviewActivity::class.java).apply { putExtra("data", savedUri) })
                 }
             })
     }

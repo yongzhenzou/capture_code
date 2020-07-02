@@ -26,13 +26,10 @@ class CaptureUtils {
                     true -> FileProvider.getUriForFile(context, authority, imgFile)
                     else -> Uri.fromFile(imgFile)
                 }
-
                 with( Intent(MediaStore.ACTION_IMAGE_CAPTURE)){
                     putExtra(MediaStore.EXTRA_OUTPUT,imgUri)
                     context.startActivityForResult(this, CAPTURE_REQUEST_CODE)
                 }
-
-
             } catch (e: Exception) {
                 e.printStackTrace()
             }

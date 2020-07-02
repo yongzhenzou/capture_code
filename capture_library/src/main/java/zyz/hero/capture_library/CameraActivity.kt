@@ -1,25 +1,24 @@
 package zyz.hero.capture_library
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.net.Uri
+import android.os.Bundle
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import java.util.concurrent.Executors
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.extensions.BeautyImageCaptureExtender
 import androidx.camera.extensions.BeautyPreviewExtender
 import androidx.camera.extensions.HdrImageCaptureExtender
 import androidx.camera.extensions.HdrPreviewExtender
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_camera.*
@@ -27,6 +26,7 @@ import zyz.hero.capture_library.utils.statusbar.StatusBarUtils
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 open class CameraActivity : AppCompatActivity() {
     private var preview: Preview? = null
@@ -119,13 +119,13 @@ open class CameraActivity : AppCompatActivity() {
             imageCapture = captureBuilder
                 .setFlashMode(ImageCapture.FLASH_MODE_AUTO)
                 .setTargetAspectRatio(AspectRatio.RATIO_16_9)
+                .setTargetRotation(windowManager.defaultDisplay.rotation)
                 .setCaptureMode(ImageCapture.CAPTURE_MODE_MAXIMIZE_QUALITY)
                 .build()
             try {
                 val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
                 cameraProvider.unbindAll()
-                camera =
-                    cameraProvider.bindToLifecycle(this, cameraSelector!!, preview, imageCapture)
+                camera = cameraProvider.bindToLifecycle(this, cameraSelector!!, preview, imageCapture)
                 preview?.setSurfaceProvider(viewFinder.createSurfaceProvider())
             } catch (exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)

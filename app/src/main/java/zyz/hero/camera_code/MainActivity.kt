@@ -19,16 +19,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         capture.setOnClickListener {
-//            startActivityForResult(Intent(this, CameraActivity::class.java),1)
-            CaptureUtils.capture(this,externalCacheDir?.path+"/"+"capture_temp.png","${BuildConfig.APPLICATION_ID}.fileProvider")
+            startActivityForResult(Intent(this, CameraActivity::class.java),1)
+//            CaptureUtils.capture(this,externalCacheDir?.path+"/"+"capture_temp.png","${BuildConfig.APPLICATION_ID}.fileProvider")
         }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == CaptureUtils.CAPTURE_REQUEST_CODE&&resultCode == Activity.RESULT_OK){
-            Toast.makeText(this,File(externalCacheDir?.path+"/"+"capture_temp.png").exists().toString(),Toast.LENGTH_SHORT).show()
-
+//        if (requestCode == CaptureUtils.CAPTURE_REQUEST_CODE&&resultCode == Activity.RESULT_OK){
+//            Toast.makeText(this,File(externalCacheDir?.path+"/"+"capture_temp.png").exists().toString(),Toast.LENGTH_SHORT).show()
+//
+//        }
+        if (resultCode == Activity.RESULT_OK){
+            Glide.with(this).load( (data?.getParcelableExtra("data") as Uri).path).into(img)
         }
     }
 }

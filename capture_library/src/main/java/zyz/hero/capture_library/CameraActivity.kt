@@ -101,7 +101,7 @@ open class CameraActivity : AppCompatActivity() {
             }
             //支持美颜的话,开启美颜,感觉自己萌萌哒
             var previewBeauty = BeautyPreviewExtender.create(previewBuilder)
-            if (previewBeauty.isExtensionAvailable(cameraSelector!!)){
+            if (previewBeauty.isExtensionAvailable(cameraSelector!!)) {
                 previewBeauty.enableExtension(cameraSelector!!)
             }
 
@@ -113,7 +113,7 @@ open class CameraActivity : AppCompatActivity() {
                 captureHdr.enableExtension(cameraSelector!!)
             }
             var captureBeauty = BeautyImageCaptureExtender.create(captureBuilder)
-            if (captureBeauty.isExtensionAvailable(cameraSelector!!)){
+            if (captureBeauty.isExtensionAvailable(cameraSelector!!)) {
                 captureBeauty.enableExtension(cameraSelector!!)
             }
             imageCapture = captureBuilder
@@ -125,7 +125,8 @@ open class CameraActivity : AppCompatActivity() {
             try {
                 val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
                 cameraProvider.unbindAll()
-                camera = cameraProvider.bindToLifecycle(this, cameraSelector!!, preview, imageCapture)
+                camera =
+                    cameraProvider.bindToLifecycle(this, cameraSelector!!, preview, imageCapture)
                 preview?.setSurfaceProvider(viewFinder.createSurfaceProvider())
             } catch (exc: Exception) {
                 Log.e(TAG, "Use case binding failed", exc)
@@ -141,7 +142,11 @@ open class CameraActivity : AppCompatActivity() {
             outputDirectory,
             SimpleDateFormat(FILENAME_FORMAT).format(System.currentTimeMillis()) + ".jpg"
         )
-        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile)
+            .setMetadata(ImageCapture.Metadata().apply {
+                //处理前置摄像头 左右翻转
+                if (!backCam) isReversedHorizontal = true
+            }).build()
         imageCapture.takePicture(
             outputOptions,
             ContextCompat.getMainExecutor(this),

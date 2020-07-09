@@ -162,7 +162,10 @@ open class CameraActivity : AppCompatActivity() {
                     viewFinder.visibility = View.GONE
                     Glide.with(this@CameraActivity).load(savedUri.path).into(img)
                     confirm.setOnClickListener {
-                        setResult(Activity.RESULT_OK, Intent().apply { putExtra("data", savedUri) })
+                        setResult(Activity.RESULT_OK, Intent().apply {
+                            putExtra("data", savedUri)
+                            putExtra("path", photoFile.path)
+                        })
                         finish()
                     }
                 }
